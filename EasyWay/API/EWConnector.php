@@ -2,6 +2,10 @@
 
 namespace EasyWay\API;
 
+/**
+ * @author avdeev.sa
+ *
+ */
 class EWConnector{
     
     private $url;
@@ -9,6 +13,12 @@ class EWConnector{
     private $pass;
     private $curl;
     
+    /**
+     * 
+     * @param string $url API url
+     * @param string $user API user
+     * @param string $pass API password
+     */
     function __construct($url, $user, $pass){
      
         $this->url = $url;
@@ -17,11 +27,20 @@ class EWConnector{
         $this->curl = curl_init();
     }
     
+    
     function __destruct(){
         
         curl_close($this->curl);
     }
     
+    /**
+     * Возвращает предварительный расчет доставки
+     * @param string $locationFrom
+     * @param string $locationTo
+     * @param float $weight
+     * @param float $volume
+     * @return array(deliveryType, total, estDeliveryTime)
+     */
     public function getTariff($locationFrom, $locationTo, $weight, $volume){
         
         $url = $this->url."getTariff?locationFrom=".$locationFrom."&locationTo=".$locationTo."&weight=".$weight."&volume=".$volume;
@@ -29,13 +48,21 @@ class EWConnector{
         
     }
     
-        
+    /**
+     * Возвращает список ПВЗ
+     * @return array(city, address, lat, lng, office, guid, partner, schedule, phone)
+     */    
     public function getPickupPoints(){
         
         $url = $this->url."getPickupPointsV2";
         return json_decode($this->getRequest($url), true);
     }
     
+    /**
+     * Создание заявки
+     * @param array $order
+     * @return array(isError, errors, )
+     */
     public function createOrder($order){
         
         $addresFrom = $order["locationFrom"];
@@ -62,10 +89,21 @@ class EWConnector{
         $url = $this->url."createOrder";
         
         $result =  $this->postRequest($url, $xml->asXML());
-        return $result;
+        
+        $arr = $this->to_array($result);
+        
+        return array(
+            "isError" => $arr["fault"]["isError"],
+            "errors" => $arr["fault"]["errors"],
+            "id" => $arr["value"]
+        );
     }
     
-    
+    /**
+     * Запрос статусов заявок
+     * @param array string $orderIds
+     * @return array(orderNumber, date, status, arrivalPlanDateTime, dateOrder, sender, receiver, carrierTrackNumber)
+     */
     public function getStatus($orderIds){
         
         $query="";
@@ -83,11 +121,10 @@ class EWConnector{
         $url = $this->url."getStatus?json=&number=".$query;
         
         $result = $this->getRequest($url);
-        
-        //echo $result;
-        
+                        
         return json_decode($result, true);
     }
+    
     
     protected function getRequest($url){
                 
@@ -102,6 +139,7 @@ class EWConnector{
         
         return $output;
     }
+    
     
     protected function postRequest($url, $data){
         
@@ -118,13 +156,7 @@ class EWConnector{
         
         $output = curl_exec($this->curl);
         
-        $arr = $this->to_array($output);
-        
-        return array(
-            "isError" => $arr["fault"]["isError"],
-            "errors" => $arr["fault"]["errors"],
-            "id" => $arr["value"]
-        );
+        return $output;
     }
     
     
