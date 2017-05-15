@@ -1,5 +1,4 @@
 # EasyWayAPI
-Easy Way API
 
 Реализованные методы:
 
