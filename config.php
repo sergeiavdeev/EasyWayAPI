@@ -1,6 +1,6 @@
 <?php
 return array(
-    "url" => "http://v-mv-web/EasyWay/hs/EWA_API/",
+    "url" => "api url",
     "user" => "name",
     "pass" => "password"
 );
