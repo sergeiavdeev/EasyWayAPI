@@ -59,6 +59,48 @@ class EWConnector{
     }
     
     /**
+     * Возвращает подробную информацию по заявкам
+     * @param array $orderIds
+     * @return array(id, 
+			date, 
+			regionFrom, 
+			regionTo,
+			addressFrom,
+			addressTo,
+			weight,
+			volume,
+			length,
+			width,
+			height,
+			accessedCost,
+			cargoCost,
+			total,
+			recipient,
+			recipientPhone,
+			deliveryCost
+     */
+    public function getOrderInfo($orderIds){
+        
+        $query="";
+        
+        for ($i = 0; $i < count($orderIds); $i++){
+            if($i == count($orderIds) - 1){
+                
+                $query = $query.$orderIds[$i];
+            } else{
+                
+                $query = $query.$orderIds[$i].",";
+            }
+        }
+        
+        $url = $this->url."getOrderInfo?number=".$query;
+        
+        $result = $this->getRequest($url);
+        
+        return json_decode($result, true);
+    }
+    
+    /**
      * Создание заявки
      * @param array $order
      * @return array(isError, errors, )
