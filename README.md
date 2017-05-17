@@ -7,4 +7,3 @@
 <li><strong>getTariff</strong> - предварительный расчет доставки
 <li><strong>getStatus</strong> - запрос статусов заявок
 <li><strong>getOrderInfo</strong> - получение подробной информации по заявкам
-<li> ** ищдв ** 
