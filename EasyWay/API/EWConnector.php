@@ -93,7 +93,7 @@ class EWConnector{
         $arr = $this->to_array($result);
         
         return array(
-            "isError" => $arr["fault"]["isError"],
+            "isError" => $arr["fault"]["isError"] === "true"?true:false,
             "errors" => $arr["fault"]["errors"],
             "id" => $arr["value"]
         );
