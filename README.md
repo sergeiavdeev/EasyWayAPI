@@ -2,7 +2,7 @@
 
 ## Реализованные методы:
 
-<li><bold>createOrder - создание заявки на доставку
+<li><strong>createOrder</strong> - создание заявки на доставку
 <li>getPickupPoints - получение списка ПВЗ
 <li>getTariff - предварительный расчет доставки
 <li>getStatus - запрос статусов заявок
