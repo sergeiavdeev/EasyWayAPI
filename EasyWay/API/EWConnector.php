@@ -43,7 +43,7 @@ class EWConnector{
      */
     public function getTariff($locationFrom, $locationTo, $weight, $volume){
         
-        $url = $this->url."getTariff?locationFrom=".$locationFrom."&locationTo=".$locationTo."&weight=".$weight."&volume=".$volume;
+        $url = $this->url."getTariff?locationFrom=".urlencode($locationFrom)."&locationTo=".urlencode($locationTo)."&weight=".$weight."&volume=".$volume;
         return json_decode($this->getRequest($url), true);
         
     }
