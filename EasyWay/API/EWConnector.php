@@ -62,7 +62,7 @@ class EWConnector{
      * Возвращает подробную информацию по заявкам
      * @param array $orderIds
      * @return array(id, 
-	 *     date, 
+     *     date, 
      *     regionFrom, 
      *     regionTo,
      *     addressFrom,
