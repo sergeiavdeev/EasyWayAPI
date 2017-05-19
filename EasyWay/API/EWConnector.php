@@ -62,22 +62,22 @@ class EWConnector{
      * Возвращает подробную информацию по заявкам
      * @param array $orderIds
      * @return array(id, 
-			date, 
-			regionFrom, 
-			regionTo,
-			addressFrom,
-			addressTo,
-			weight,
-			volume,
-			length,
-			width,
-			height,
-			accessedCost,
-			cargoCost,
-			total,
-			recipient,
-			recipientPhone,
-			deliveryCost
+	 *     date, 
+     *     regionFrom, 
+     *     regionTo,
+     *     addressFrom,
+     *     addressTo,
+     *     weight,
+     *     volume,
+     *     length,
+     *     width,
+     *     height,
+     *     accessedCost,
+     *     cargoCost,
+     *     total,
+     *     recipient,
+     *     recipientPhone,
+     *     deliveryCost
      */
     public function getOrderInfo($orderIds){
         
