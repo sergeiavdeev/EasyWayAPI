@@ -43,7 +43,9 @@ class EWConnector{
      */
     public function getTariff($locationFrom, $locationTo, $weight, $volume){
         
-        $url = $this->url."getTariff?locationFrom=".urlencode($locationFrom)."&locationTo=".urlencode($locationTo)."&weight=".$weight."&volume=".$volume;
+        $url = $this->url."getTariff?locationFrom=".urlencode($locationFrom)."&locationTo=".urlencode($locationTo);
+        $url .= "&weight=".$weight."&volume=".$volume;
+        
         return json_decode($this->getRequest($url), true);
         
     }
@@ -103,42 +105,14 @@ class EWConnector{
     /**
      * Создание заявки
      * @param array $order
-     * @return array(isError, errors, )
+     * @return array(isError, errors, data(id, ))
      */
-    public function createOrder($order){
-        
-        $addresFrom = $order["locationFrom"];
-        $addresTo = $order["locationTo"];
-                
-        $order["locationFrom"] = array(
-            "addressString" => $addresFrom
-        );
-        
-        $order["locationTo"] = array(
-            "addressString" => $addresTo
-        );
-        
-        $params = array(
-            "params" => array(
-                "name" => "Order",
-                "value" => $order
-            )            
-        );
-                        
-        $xml = new \SimpleXMLElement('<request/>');
-        $this->to_xml($xml, $params);
-        
+    public function createOrder($order) {
+     
         $url = $this->url."createOrder";
+        $result =  $this->postRequest($url, json_encode($order));
         
-        $result =  $this->postRequest($url, $xml->asXML());
-        
-        $arr = $this->to_array($result);
-        
-        return array(
-            "isError" => $arr["fault"]["isError"] === "true"?true:false,
-            "errors" => $arr["fault"]["errors"],
-            "id" => $arr["value"]
-        );
+        return json_decode($result, true);
     }
     
     /**
