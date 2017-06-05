@@ -9,41 +9,29 @@ $ew = new EWConnector($config["url"], $config["user"], $config["pass"]);
 
 //Создать заявку
 $order = array(
-    "id" => "3355665586",
+    "id" => "3355665590",
     "locationFrom" => "г Москва, ул Ляпидевского, 18, кв. 1",
     "locationTo" => "Подольск, Рабочая 32/24",
     "weight" => 10,
     "length" => 50,
     "width" => 60,
     "height" => 70,
-    "cargoType" => "1",
-    "cargoCost" => "300",
+    "cargoCount" => 1,
     "assessedCost" => "300",
     "paymentMethod" => "1",
-    "tariff" => "",
-    "deliveryType" => "0",
-    "total" => "300",
-    "sender" => array(
-        "name" => "ООО \"ОСА индастриз\"",
-        "phones" => array(
-            "phoneNumber" => "905 5089784",
-            "additional" => ""
-        )
-    ),
+    "deliveryType" => 1,
+    "total" => "300",    
     "recipient" => array(
         "name" => "Иванов И.И.",
-        "phones" => array(
-            "phoneNumber" => "905 5089784",
-            "additional" => ""
-        )
-    ),
-    "items" => array()
+        "phone" => "9055089783"
+    )
 );
 
 $result = $ew->createOrder($order);
 
 if(!$result["isError"]){
-    echo "Заявка создана";    
+    echo "Заявка создана №"; 
+    echo $result["data"]["id"];
 }
 else{
     echo $result["errors"];
