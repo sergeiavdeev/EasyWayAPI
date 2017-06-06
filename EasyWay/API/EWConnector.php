@@ -39,7 +39,7 @@ class EWConnector {
      * @param string $locationTo
      * @param float $weight
      * @param float $volume
-     * @return array(deliveryType, total, estDeliveryTime)
+     * @return array(deliveryType, total, estDeliveryTime - array(min, max))
      */
     public function getTariff($locationFrom, $locationTo, $weight, $volume) {
         
