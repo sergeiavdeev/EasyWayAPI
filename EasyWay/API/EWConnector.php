@@ -6,7 +6,7 @@ namespace EasyWay\API;
  * @author avdeev.sa
  *
  */
-class EWConnector{
+class EWConnector {
     
     private $url;
     private $user;
@@ -19,7 +19,7 @@ class EWConnector{
      * @param string $user API user
      * @param string $pass API password
      */
-    function __construct($url, $user, $pass){
+    function __construct($url, $user, $pass) {
      
         $this->url = $url;
         $this->user = $user;
@@ -28,7 +28,7 @@ class EWConnector{
     }
     
     
-    function __destruct(){
+    function __destruct() {
         
         curl_close($this->curl);
     }
@@ -41,7 +41,7 @@ class EWConnector{
      * @param float $volume
      * @return array(deliveryType, total, estDeliveryTime)
      */
-    public function getTariff($locationFrom, $locationTo, $weight, $volume){
+    public function getTariff($locationFrom, $locationTo, $weight, $volume) {
         
         $url = $this->url."getTariff?locationFrom=".urlencode($locationFrom)."&locationTo=".urlencode($locationTo);
         $url .= "&weight=".$weight."&volume=".$volume;
@@ -54,7 +54,7 @@ class EWConnector{
      * Возвращает список ПВЗ
      * @return array(city, address, lat, lng, office, guid, partner, schedule, phone)
      */    
-    public function getPickupPoints(){
+    public function getPickupPoints() {
         
         $url = $this->url."getPickupPointsV2";
         return json_decode($this->getRequest($url), true);
@@ -81,11 +81,11 @@ class EWConnector{
      *     recipientPhone,
      *     deliveryCost
      */
-    public function getOrderInfo($orderIds){
+    public function getOrderInfo($orderIds) {
         
         $query="";
         
-        for ($i = 0; $i < count($orderIds); $i++){
+        for ($i = 0; $i < count($orderIds); $i++) {
             if($i == count($orderIds) - 1){
                 
                 $query = $query.$orderIds[$i];
@@ -120,11 +120,11 @@ class EWConnector{
      * @param array string $orderIds
      * @return array(orderNumber, date, status, arrivalPlanDateTime, dateOrder, sender, receiver, carrierTrackNumber)
      */
-    public function getStatus($orderIds){
+    public function getStatus($orderIds) {
         
         $query="";
         
-        for ($i = 0; $i < count($orderIds); $i++){
+        for ($i = 0; $i < count($orderIds); $i++) {
             if($i == count($orderIds) - 1){
                 
                 $query = $query.$orderIds[$i];    
@@ -142,7 +142,27 @@ class EWConnector{
     }
     
     
-    protected function getRequest($url){
+    public function getLabel($orderIds) {
+    
+        $query="";
+        
+        for ($i = 0; $i < count($orderIds); $i++) {
+            if($i == count($orderIds) - 1){
+                
+                $query = $query.$orderIds[$i];
+            } else{
+                
+                $query = $query.$orderIds[$i].",";
+            }
+        }
+        
+        $url = $this->url."getLabel?number=".$query;
+        
+        return $this->getRequest($url);
+    }
+    
+    
+    protected function getRequest($url) {
                 
         curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
@@ -157,7 +177,7 @@ class EWConnector{
     }
     
     
-    protected function postRequest($url, $data){
+    protected function postRequest($url, $data) {
         
         curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);        
@@ -165,7 +185,7 @@ class EWConnector{
         curl_setopt($this->curl, CURLOPT_USERPWD, $this->user.":".$this->pass);
         
         curl_setopt($this->curl, CURLOPT_HTTPHEADER,
-            array('Content-Type: text/xml; charset=utf-8',
+            array('Content-Type: applecation/json; charset=utf-8',
                 'Content-Length: '.strlen($data)));
         
         curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
