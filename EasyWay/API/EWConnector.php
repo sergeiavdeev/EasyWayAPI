@@ -120,12 +120,12 @@ class EWConnector {
      * @param array string $orderIds
      * @return array(orderNumber, date, status, arrivalPlanDateTime, dateOrder, sender, receiver, carrierTrackNumber)
      */
-    public function getStatus($orderIds) {
+    public function getStatus($orderIds){
         
         $query="";
         
         for ($i = 0; $i < count($orderIds); $i++) {
-            if($i == count($orderIds) - 1){
+            if($i == count($orderIds) - 1) {
                 
                 $query = $query.$orderIds[$i];    
             } else{
@@ -151,7 +151,7 @@ class EWConnector {
         $query="";
         
         for ($i = 0; $i < count($orderIds); $i++) {
-            if($i == count($orderIds) - 1){
+            if($i == count($orderIds) - 1) {
                 
                 $query = $query.$orderIds[$i];
             } else{
