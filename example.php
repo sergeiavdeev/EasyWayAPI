@@ -53,5 +53,10 @@ $result = $ew->getTariff("Москва", "Серпухов", 2, 0.1);
 
 echo $result[0]["total"];
 
+//Получение подробной информации о заявках
 $result = $ew->getOrderInfo(array("27724-YD1846665", "1092105-YD1854018"));
 echo $result[0]["width"];
+
+//Получение макетов этикеток для печати
+echo $ew->getLabel(array("000026718", "000033668"));
+
