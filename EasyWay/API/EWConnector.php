@@ -141,7 +141,11 @@ class EWConnector {
         return json_decode($result, true);
     }
     
-    
+    /**
+     * Получение макета этикеток для печати
+     * @param strin array $orderIds массив номеров заявок
+     * @return string html-макет этикеток
+     */
     public function getLabel($orderIds) {
     
         $query="";
