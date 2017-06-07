@@ -52,11 +52,12 @@ class EWConnector {
     
     /**
      * Возвращает список ПВЗ
+     * @param string $order - поле сортировки, по умолчанию "city"
      * @return array(city, address, lat, lng, office, guid, partner, schedule, phone)
      */    
-    public function getPickupPoints() {
+    public function getPickupPoints($order = "city") {
         
-        $url = $this->url."getPickupPointsV2";
+        $url = $this->url."getPickupPoints?order=".$order;
         return json_decode($this->getRequest($url), true);
     }
     
