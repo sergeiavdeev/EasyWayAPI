@@ -1,0 +1,8 @@
+{
+    "name": "sergey-avdeev/easy-way-delivery-sdk",
+    "description": "Easy Way Delivery SDK",
+    "require": {
+        "php": "^5.3.3 || ^7.0",
+        "another-vendor/package": "1.*"
+    }
+}
