@@ -1,8 +1,16 @@
 {
     "name": "sergey-avdeev/easy-way-delivery-sdk",
     "description": "Easy Way Delivery SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Avdeev",
+            "email": "sergei_avdeev@mail.ru",
+            "homepage": "http://avdeev78.ru",
+            "role": "Developer"
+        }
+    ],
     "require": {
-        "php": "^5.3.3 || ^7.0",
-        "another-vendor/package": "1.*"
+        "php": ">=5.3.0"        
     }
 }
