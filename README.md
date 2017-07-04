@@ -1,5 +1,8 @@
 # Easy Way API
 
+## Установка
+composer require sergey-avdeev/easy-way-delivery-sdk
+
 ## Реализованные методы:
 
 <li><strong>createOrder</strong>     - создание заявки на доставку
