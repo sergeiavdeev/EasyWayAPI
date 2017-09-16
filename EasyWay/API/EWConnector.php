@@ -190,7 +190,7 @@ class EWConnector {
         curl_setopt($this->curl, CURLOPT_USERPWD, $this->user.":".$this->pass);
         
         curl_setopt($this->curl, CURLOPT_HTTPHEADER,
-            array('Content-Type: applecation/json; charset=utf-8',
+            array('Content-Type: application/json; charset=utf-8',
                 'Content-Length: '.strlen($data)));
         
         curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
