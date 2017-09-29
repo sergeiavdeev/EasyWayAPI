@@ -1,3 +1,4 @@
+![](https://github.com/sergeiavdeev/EasyWayAPI/raw/master/img/ew-logo.png)
 # Easy Way API
 
 ## Установка
