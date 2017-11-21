@@ -173,6 +173,7 @@ class EWConnector {
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($this->curl, CURLOPT_HEADER, 0);
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, array());
+        curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($this->curl, CURLOPT_POST, false);
         curl_setopt($this->curl, CURLOPT_USERPWD, $this->user.":".$this->pass);
         
@@ -187,8 +188,8 @@ class EWConnector {
         curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);        
         curl_setopt($this->curl, CURLOPT_POST, true);
-        curl_setopt($this->curl, CURLOPT_USERPWD, $this->user.":".$this->pass);
-        
+        curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($this->curl, CURLOPT_USERPWD, $this->user.":".$this->pass);        
         curl_setopt($this->curl, CURLOPT_HTTPHEADER,
             array('Content-Type: application/json; charset=utf-8',
                 'Content-Length: '.strlen($data)));
