@@ -2,7 +2,7 @@
     "name": "sergey-avdeev/easy-way-delivery-sdk",
     "description": "Easy Way Delivery SDK",
     "type": "library",
-    "keywords": ["EasyWay","Delivery", "SDK"],
+    "keywords": ["EasyWay","Delivery", "SDK", "API"],
     "license": "MIT",
     "authors": [
         {
