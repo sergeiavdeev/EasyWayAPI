@@ -121,22 +121,29 @@ class EWConnector {
      * @param array string $orderIds
      * @return array(orderNumber, date, status, arrivalPlanDateTime, dateOrder, sender, receiver, carrierTrackNumber)
      */
-    public function getStatus($orderIds){
+    public function getStatus($orderIds) {
         
         $query="";
-        
-        for ($i = 0; $i < count($orderIds); $i++) {
-            if($i == count($orderIds) - 1) {
-                
-                $query = $query.$orderIds[$i];    
-            } else{
-                
-                $query = $query.$orderIds[$i].",";    
+        $url = "";
+
+        if (isset($orderIds["dateFrom"]) && isset($orderIds["dateTo"])) {
+
+            $url = $this->url."getStatus?json=&dateFrom=".$orderIds["dateFrom"]."&dateTo=".$orderIds["dateTo"];
+
+        } else {
+
+            for ($i = 0; $i < count($orderIds); $i++) {
+                if($i == count($orderIds) - 1) {
+
+                    $query = $query.$orderIds[$i];
+                } else{
+
+                    $query = $query.$orderIds[$i].",";
+                }
             }
+            $url = $this->url."getStatus?json=&number=".$query;
         }
-        
-        $url = $this->url."getStatus?json=&number=".$query;
-        
+
         $result = $this->getRequest($url);
                         
         return json_decode($result, true);
