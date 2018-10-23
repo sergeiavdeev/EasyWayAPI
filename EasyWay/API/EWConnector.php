@@ -124,7 +124,6 @@ class EWConnector {
     public function getStatus($orderIds) {
         
         $query="";
-        $url = "";
 
         if (isset($orderIds["dateFrom"]) && isset($orderIds["dateTo"])) {
 
@@ -151,7 +150,7 @@ class EWConnector {
     
     /**
      * Получение макета этикеток для печати
-     * @param strin array $orderIds массив номеров заявок
+     * @param string array $orderIds массив номеров заявок
      * @return string html-макет этикеток
      */
     public function getLabel($orderIds) {
